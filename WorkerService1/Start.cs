@@ -16,6 +16,8 @@ internal class Start(
         _logger.LogInformation("StartMethod called");
         var files = _mp3Recover.Recover();
         var validatedFiles = _validations.ValidateFiles(files);
-        var txtResults = await _sendToInvox.ProcessBatch(validatedFiles);
+        await _sendToInvox.ProcessBatch(validatedFiles);
+        _logger.LogInformation("StartMethod finished");
+
     }
 }

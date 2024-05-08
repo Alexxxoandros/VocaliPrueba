@@ -1,15 +1,19 @@
 ﻿namespace WorkerService1;
 
-internal class Mp3Recover
+public class Mp3Recover
 {
     private readonly IConfiguration _configuration;
+
+    public Mp3Recover()
+    {
+    }
 
     public Mp3Recover(IConfiguration configuration)
     {
         _configuration = configuration;
     }
 
-    internal List<string> Recover()
+    public List<string> Recover()
     {
         var pathFiles = _configuration.GetValue<string>("PathFiles");
         var exist = Directory.Exists(pathFiles);

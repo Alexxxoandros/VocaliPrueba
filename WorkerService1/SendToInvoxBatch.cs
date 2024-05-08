@@ -13,7 +13,7 @@ internal class SendToInvoxBatch
         _logger = logger;
     }
 
-    internal async Task<List<Result>> ProcessBatch(List<string> files)
+    internal async Task ProcessBatch(List<string> files)
     {
         var responses = new List<Result>();
 
@@ -26,8 +26,7 @@ internal class SendToInvoxBatch
             responses.AddRange(batchResponses);
         }
 
-        SaveResult(responses);
-        return responses;
+        SaveResult(responses);        
     }
 
     private async Task<List<Result>> SendBatch(List<string> batch)

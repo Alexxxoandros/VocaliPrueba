@@ -11,7 +11,7 @@ internal class SendToInvox
         _configuration = configuration;
     }
 
-    public void ProcessInBatches(List<string> filesToProcess)
+    public async Task ProcessInBatchesAsync(List<string> filesToProcess)
     {
         var batch = new List<string>();
         foreach (var file in filesToProcess)
@@ -19,13 +19,13 @@ internal class SendToInvox
             batch.Add(file);
             if (batch.Count == 3)
             {
-                SendBatch(batch);
+                await SendBatch(batch);
 
                 batch.Clear();
             }
         }
 
-        if (batch.Count > 0) SendBatch(batch);
+        if (batch.Count > 0) await SendBatch(batch);
     }
 
     private async Task SendBatch(List<string> batch)

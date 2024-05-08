@@ -18,14 +18,12 @@ public class VocaliControler : ControllerBase
     /// This method is used to send audio data.
     /// </summary>
     /// <param name="file">The audio file to be processed.</param>
-    /// <returns>The result of the audio processing.</returns>
+    /// <returns>Returns a random file out of 4 possible.</returns>
     [HttpPut]
     public async Task<IActionResult> SendAudio(IFormFile file)
     {
         var data = await _mp3Process?.Process(file)!;
         var res = new Result();
-        res.FileName = data.FileName;
-        res.Response = data.Response;
         return Ok(data);
     }
 }
