@@ -17,7 +17,7 @@ namespace TestProjectWorker
         {
             // Arrange
             var logger = new Mock<ILogger<ValidateFormat>>();
-            string validFile = "testAyudio1.mp3";
+            string validFile = "./TestFiles/testAudio.mp3";
 
             var validateFormat = new ValidateFormat(logger.Object);
             // Act
@@ -32,7 +32,7 @@ namespace TestProjectWorker
         {
             // Arrange
             var logger = new Mock<ILogger<ValidateFormat>>();
-            string validFile = "InvalidFile.mp3";
+            string validFile = "./TestFiles/InvalidFile.mp3";
 
             var validateFormat = new ValidateFormat(logger.Object);
             // Act

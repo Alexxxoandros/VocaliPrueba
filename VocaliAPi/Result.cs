@@ -1,5 +1,7 @@
-﻿public class Result
+﻿namespace VocaliAPi;
+
+public class Result
 {
-    public string Response { get; set; }
-    public string FileName { get; set; }
+    public string? Response { get; set; }
+    public string? FileName { get; set; }
 }

@@ -17,8 +17,8 @@ namespace TestProjectWorker
         {
             // Arrange
             var configuration = new Mock<IConfiguration>();
-            configuration.Setup(c => c.GetSection("PathFiles").Value).Returns("C:\\Test\\Documents\\Vocali\\Test");
-            
+            configuration.Setup(c => c.GetSection("PathFiles").Value).Returns("./TestFiles/ExistFiles");
+
             var expectedFiles = new List<string> { "file1.mp3", "file2.mp3" };
             var mp3Recover = new Mp3Recover(configuration.Object);
 

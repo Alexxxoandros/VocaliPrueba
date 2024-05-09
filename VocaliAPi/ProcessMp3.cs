@@ -22,36 +22,40 @@ internal class ProcessMp3 : IProcessMp3
                 Thread.Sleep(5000);
                 var random = new Random();
                 var failureProbability = random.Next(1, 101);
-                if (failureProbability <= 20) throw new Exception("Error in send process");
+                if (failureProbability <= 20) throw new ProcessException("Error in send process");
 
                 var result = Response();
                 send = true;
                 return Task.FromResult(result);
             }
-            catch (Exception e)
+            catch (ProcessException e)
             {
                 attempts++;
             }
 
-        throw new Exception("Error in send process");
+        return null!;
     }
 
     private Result Response()
     {
         var pathFiles = _configuration.GetValue<string>("PathFilesTextResult");
+        var result = new Result();
 
-        var files = Directory.GetFiles(pathFiles, "*.txt");
-        var random = new Random();
-        var index = random.Next(files.Length);
-        var randomFilePath = files[index];
-        var date = DateTime.Now.ToString("yyyy-MM-dd-HHmmss");
-
-        var result = new Result
+        if (pathFiles != null)
         {
-            Response = File.ReadAllText(randomFilePath),
-            FileName = Path.GetFileNameWithoutExtension(randomFilePath) + "_" + date + ".txt"
-        };
+            var files = Directory.GetFiles(pathFiles, "*.txt");
+            var random = new Random();
+            var index = random.Next(files.Length);
+            var randomFilePath = files[index];
+            var date = DateTime.Now.ToString("yyyy-MM-dd-HHmmss");
 
+
+            result.Response = File.ReadAllText(randomFilePath);
+            result.FileName = Path.GetFileNameWithoutExtension(randomFilePath) + "_" + date + ".txt";
+            
+
+            return result;
+        }
         return result;
     }
 }
