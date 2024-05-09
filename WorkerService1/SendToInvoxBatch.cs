@@ -26,7 +26,8 @@ internal class SendToInvoxBatch
             responses.AddRange(batchResponses);
         }
 
-        SaveResult(responses);        
+        SaveResult(responses);
+        _logger.LogInformation("<----------Results saved---------->");
     }
 
     private async Task<List<Result>> SendBatch(List<string> batch)
@@ -72,6 +73,7 @@ internal class SendToInvoxBatch
         foreach (var res in responses.Where(res => true))
         {
             if (pathFiles != null) File.WriteAllText(Path.Combine(pathFiles, res.FileName), res.Response);
+            _logger.LogInformation("File " + res.FileName + " saved");
         }
     }
 }
