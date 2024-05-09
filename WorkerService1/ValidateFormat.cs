@@ -2,7 +2,7 @@
 
 namespace WorkerService1;
 
-internal class ValidateFormat
+public class ValidateFormat
 {
     private readonly ILogger<ValidateFormat> _logger;
 

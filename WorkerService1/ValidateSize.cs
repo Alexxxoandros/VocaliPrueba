@@ -1,6 +1,6 @@
 ﻿namespace WorkerService1;
 
-internal class ValidateSize
+public class ValidateSize
 {
     private readonly IConfiguration _configuration;
     private readonly ILogger<ValidateSize> _logger;
@@ -11,7 +11,7 @@ internal class ValidateSize
         _configuration = configuration;
     }
 
-    internal bool Validate(string file)
+    public bool Validate(string file)
     {
         var minSize = int.Parse(_configuration.GetSection("MinSize").Value);
         var maxSize = int.Parse(_configuration.GetSection("MaxSize").Value);
